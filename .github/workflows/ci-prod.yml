@@ -1,0 +1,44 @@
+name: CI Prod
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Run Unit Tests
+        run: ./gradlew testReleaseUnitTest
+
+      - name: Build APK (Release)
+        run: ./gradlew assembleRelease
+
+      - name: Send Mail Notification
+        uses: dawidd6/action-send-mail@v6
+        with:
+          connection_url: ${{ secrets.MAIL_CONNECTION }}
+          subject: "[CI] Build Prod terminé"
+          to: votreadresse@example.com
+          from: CI Bot
+          body: |
+            Build release terminé pour `prod`
+            Commit: ${{ github.sha }}

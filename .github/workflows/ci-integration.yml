@@ -1,0 +1,36 @@
+name: CI Integration
+
+on:
+  push:
+    branches:
+      - integration
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        sdk: [29, 31]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Build & Test on SDK ${{ matrix.sdk }}
+        run: |
+          ./gradlew assembleDebug
+          ./gradlew testDebugUnitTest
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v6
+        with:
+          connection_url: ${{ secrets.MAIL_CONNECTION }}
+          subject: "[CI] Integration SDK ${{ matrix.sdk }}"
+          to: votreadresse@example.com
+          from: CI Integration
+          body: |
+            Tests SDK ${{ matrix.sdk }} réussis
+            Commit: ${{ github.sha }}

@@ -1,0 +1,57 @@
+name: CI Dev
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Send Mail Notification
+        uses: dawidd6/action-send-mail@v6
+        with:
+          connection_url: ${{ secrets.MAIL_CONNECTION }}
+          subject: "[CI] Build Dev terminé"
+          to: votreadresse@example.com
+          from: CI Bot
+          body: |
+            Build terminé pour la branche `dev`
+            Commit: ${{ github.sha }}
+
+      - name: Upload to TestApp.io
+        uses: testappio/github-action@v5
+        with:
+          api_token: ${{ secrets.TESTAPPIO_API_TOKEN }}
+          app_id: ${{ secrets.TESTAPPIO_APP_ID }}
+          file: app/build/outputs/apk/debug/app-debug.apk
+          release_notes: ""
+          git_release_notes: true
+          include_git_commit_id: false
+          notify: true
