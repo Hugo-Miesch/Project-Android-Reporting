@@ -17,7 +17,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="16dp" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mot de passe"
+        android:hint="@string/mot_de_passe"
         android:inputType="textPassword"
         android:layout_marginBottom="24dp" />
 
@@ -33,6 +33,6 @@
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connexion" />
+        android:text="@string/connexion" />
 
 </LinearLayout>

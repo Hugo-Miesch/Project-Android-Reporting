@@ -11,6 +11,7 @@ import com.example.printngo.PrinterDetailActivity
 import com.example.printngo.R
 import com.example.printngo.models.Printer
 
+@Suppress("NAME_SHADOWING")
 class PrintersAdapter(private val printers: List<Printer>) : RecyclerView.Adapter<PrintersAdapter.PrinterViewHolder>() {
 
     class PrinterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
