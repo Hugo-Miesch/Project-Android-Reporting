@@ -37,7 +37,7 @@ jobs:
       - name: Send Mail Notification
         uses: dawidd6/action-send-mail@v6
         with:
-          connection_url: ${{ secrets.MAIL_CONNECTION }}
+          connection_url: ${{ secrets.MAIL_CONNEXION }}
           subject: "[CI] Build Dev terminé"
           to: votreadresse@example.com
           from: CI Bot
