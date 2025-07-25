@@ -2,6 +2,7 @@ package com.example.printngo
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.printngo.network.RetrofitInstance
@@ -32,6 +33,15 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Remplis tous les champs", Toast.LENGTH_SHORT).show()
             }
+            val crashButton = Button(this)
+            crashButton.text = "Test Crash"
+            crashButton.setOnClickListener {
+                throw RuntimeException("Test Crash") // Force a crash
+            }
+
+            addContentView(crashButton, ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT))
         }
     }
 
