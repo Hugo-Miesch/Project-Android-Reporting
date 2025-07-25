@@ -1,10 +1,11 @@
 package com.example.printngo
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.printngo.fragments.StoreFragment
-import com.example.printngo.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -16,14 +17,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         nav = findViewById(R.id.bottom_navigation)
+        val accountBtn = findViewById<ImageButton>(R.id.accountButton)
+
         loadFragment(StoreFragment())
 
         nav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_store -> loadFragment(StoreFragment())
-                // Ajoute d'autres fragments ici plus tard
+                R.id.nav_printers -> loadFragment(PrintersFragment())
             }
             true
+        }
+
+        accountBtn.setOnClickListener {
+            startActivity(Intent(this, AccountActivity::class.java))
         }
     }
 

@@ -29,7 +29,7 @@ class StoreAdapter(
 
         holder.name.text = p.name
         holder.price.text = "${p.price} €"
-        holder.image.setImageResource(p.imageResId)
+        holder.image.setImageResource(getImageResId(p.name))
 
         holder.itemView.setOnClickListener {
             val ctx = holder.itemView.context
@@ -41,6 +41,19 @@ class StoreAdapter(
             }.also { ctx.startActivity(it) }
         }
     }
+
+    private fun getImageResId(name: String): Int {
+        return when (name.lowercase()) {
+            "support téléphone" -> R.drawable.support_phone
+            "boîte à vis" -> R.drawable.boite_vis
+            "organiseur de bureau" -> R.drawable.organiseur
+            "support casque" -> R.drawable.support_casque
+            "porte-clés 3d" -> R.drawable.porte_cles
+            "range câbles" -> R.drawable.range_cables
+            else -> R.drawable.support_phone // image par défaut
+        }
+    }
+
 
     override fun getItemCount(): Int = products.size
 }

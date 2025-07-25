@@ -46,6 +46,9 @@ class LoginActivity : AppCompatActivity() {
                     val matched = users.find { it.email == email && it.password == password }
 
                     if (matched != null) {
+                        val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+                        prefs.edit().putString("email", matched.email).apply()
+
                         Toast.makeText(this@LoginActivity, "Bienvenue ${matched.email}", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)

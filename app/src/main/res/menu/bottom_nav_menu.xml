@@ -4,5 +4,9 @@
         android:id="@+id/nav_store"
         android:title="Store"
         android:icon="@drawable/ic_store" />
-    <!-- Tu pourras ajouter d'autres ici -->
+    <item
+        android:id="@+id/nav_printers"
+        android:title="Imprimantes"
+        android:icon="@drawable/ic_printer" />
+
 </menu>
