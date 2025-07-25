@@ -1,5 +1,6 @@
-package com.example.printngo.adapter
+package com.example.printngo.adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.*
 import android.widget.*
@@ -24,6 +25,7 @@ class StoreAdapter(
         return ProductViewHolder(v)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val p = products[position]
 
@@ -50,7 +52,7 @@ class StoreAdapter(
             "support casque" -> R.drawable.support_casque
             "porte-clés 3d" -> R.drawable.porte_cles
             "range câbles" -> R.drawable.range_cables
-            else -> R.drawable.support_phone // image par défaut
+            else -> R.drawable.support_phone
         }
     }
 

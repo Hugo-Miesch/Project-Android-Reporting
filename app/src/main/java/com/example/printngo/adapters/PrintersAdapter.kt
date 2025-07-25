@@ -1,5 +1,6 @@
 package com.example.printngo.adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ class PrintersAdapter(private val printers: List<Printer>) : RecyclerView.Adapte
         return PrinterViewHolder(view)
     }
 
+    @SuppressLint("DiscouragedApi")
     override fun onBindViewHolder(holder: PrinterViewHolder, position: Int) {
         val printer = printers[position]
         holder.name.text = printer.name

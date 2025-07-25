@@ -1,5 +1,6 @@
 package com.example.printngo.adapter
 
+import android.annotation.SuppressLint
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class PrintHistoryAdapter(private val history: List<PrintJob>) :
         return HistoryViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val job = history[position]
         holder.file.text = job.file

@@ -5,4 +5,5 @@
     <string name="email">Email</string>
     <string name="mot_de_passe">Mot de passe</string>
     <string name="connexion">Connexion</string>
+    <string name="test_crash">Test Crash</string>
 </resources>

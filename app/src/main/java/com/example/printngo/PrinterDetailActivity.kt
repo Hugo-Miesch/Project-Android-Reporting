@@ -1,5 +1,6 @@
 package com.example.printngo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -57,6 +58,7 @@ class PrinterDetailActivity : AppCompatActivity() {
 
     private fun fetchPrinterDetail(id: Int) {
         RetrofitInstance.api.getPrinterById(id).enqueue(object : Callback<PrinterDetail> {
+            @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<PrinterDetail>, response: Response<PrinterDetail>) {
                 if (response.isSuccessful) {
                     val printer = response.body()!!

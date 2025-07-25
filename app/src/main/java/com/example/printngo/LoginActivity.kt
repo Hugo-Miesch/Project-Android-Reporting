@@ -9,6 +9,7 @@ import com.example.printngo.network.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.core.content.edit
 
 
 class LoginActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Remplis tous les champs", Toast.LENGTH_SHORT).show()
             }
             val crashButton = Button(this)
-            crashButton.text = "Test Crash"
+            crashButton.text = getString(R.string.test_crash)
             crashButton.setOnClickListener {
                 throw RuntimeException("Test Crash") // Force a crash
             }
@@ -57,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
                     if (matched != null) {
                         val prefs = getSharedPreferences("auth", MODE_PRIVATE)
-                        prefs.edit().putString("email", matched.email).apply()
+                        prefs.edit { putString("email", matched.email) }
 
                         Toast.makeText(this@LoginActivity, "Bienvenue ${matched.email}", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
