@@ -18,7 +18,7 @@ class StoreFragment : Fragment() {
             StoreProduct(1, "Support téléphone", "Support inclinable pour bureau", 3.5, R.drawable.support_phone),
             StoreProduct(2, "Boîte à vis", "Petite boîte compartimentée à visser", 2.5, R.drawable.boite_vis),
             StoreProduct(3, "Organiseur de bureau", "Range-stylos et accessoires", 4.0, R.drawable.organiseur),
-            StoreProduct(4, "Porte-clés 3D", "Porte-clés personnalisé imprimé en PLA.", 1.5, R.drawable.porte_cles),
+            StoreProduct(4, "Porte-clés 3D", "Porte-clés personnalisé imprimé en PETG.", 1.5, R.drawable.porte_cles),
             StoreProduct(5, "Support Casque", "Support élégant pour casque audio, sans vis.", 7.9, R.drawable.support_casque),
             StoreProduct(6, "Range câbles", "Un petit outil pour organiser tes câbles.", 2.5, R.drawable.range_cables)
         )
